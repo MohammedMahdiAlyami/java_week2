@@ -1,0 +1,98 @@
+//Q7
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> arrayList = new ArrayList<Integer>(); // Initialize ArrayList
+
+        while (true) {
+            System.out.println("Menu:");
+            System.out.println("1. Add element to the ArrayList");
+            System.out.println("2. Display elements of the ArrayList");
+            System.out.println("3. Search for an element in the ArrayList");
+            System.out.println("4. Sort the ArrayList");
+            System.out.println("5. Remove an element from the ArrayList");
+            System.out.println("6. Stop");
+
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            try {
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter the element to add: ");
+                        int element = scanner.nextInt();
+                        arrayList.add(element);
+                        System.out.println("Element added to the ArrayList!");
+                        break;
+
+                    case 2:
+                        if (arrayList.isEmpty()) {
+                            System.out.println("ArrayList is empty!");
+                        } else {
+                            System.out.println("Elements of the ArrayList:");
+                            for (int i = 0; i < arrayList.size(); i++) {
+                                System.out.print(arrayList.get(i) + " ");
+                            }
+                            System.out.println();
+                        }
+                        break;
+
+                    case 3:
+                        if (arrayList.isEmpty()) {
+                            System.out.println("ArrayList is empty!");
+                        } else {
+                            System.out.print("Enter the element to search: ");
+                            int searchElement = scanner.nextInt();
+                            int index = arrayList.indexOf(searchElement);
+                            if (index == -1) {
+                                throw new Exception("Element not found!"); // Throw an exception if element is not found
+                            } else {
+                                System.out.println("Element found at index " + index);
+                            }
+                        }
+                        break;
+
+                    case 4:
+                        if (arrayList.isEmpty()) {
+                            System.out.println("ArrayList is empty!");
+                        } else {
+                            Collections.sort(arrayList);
+                            System.out.println("ArrayList sorted!");
+                        }
+                        break;
+
+                    case 5:
+                        if (arrayList.isEmpty()) {
+                            System.out.println("ArrayList is empty!");
+                        } else {
+                            System.out.print("Enter the element to remove: ");
+                            int removeElement = scanner.nextInt();
+                            boolean removed = arrayList.remove(Integer.valueOf(removeElement));
+                            if (removed) {
+                                System.out.println("Element removed from the ArrayList!");
+                            } else {
+                                throw new Exception("Element not found in the ArrayList!"); // Throw an exception if element is not found
+                            }
+                        }
+                        break;
+
+                    case 6:
+                        System.out.println("Stopping program...");
+                        scanner.close();
+                        System.exit(0);
+                        break;
+
+                    default:
+                        throw new Exception("Invalid choice!"); // Throw an exception for invalid choice
+                }
+            } catch (Exception e) {
+                System.out.println("Error: enter a number" + e.getMessage()); // Catch the exception and print the error message
+            }
+            System.out.println();
+}
+}
+}
+
